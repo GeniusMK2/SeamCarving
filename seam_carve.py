@@ -20,8 +20,6 @@ def shift_pixel(image_matrix, direct_x, direct_y, step=1):
     shifted_image = numpy.zeros((shape[0] + 2 * step, shape[1] + 2 * step))
     shifted_image[step + direct_x: shape[0] + step + direct_x, step + direct_y: shape[1] + step + direct_y] \
         = image_matrix[:, :]
-    # from matplotlib.image import imsave
-    # imsave("x.jpg", shifted_image)
     return shifted_image
 
 
@@ -73,10 +71,6 @@ def find_left_or_right(max_index, entry_point_index, left=True):
     if entry_point_index <= 0:
         return entry_point_index + 1
     return (entry_point_index - 1) if left else (entry_point_index + 1)
-    #
-    # if left:
-    #     return entry_point_index - 1
-    # return entry_point_index + 1
 
 
 def carve_1_step(raw_image, is_horizontal_carve, add_mode, energy_step=1):
@@ -134,8 +128,5 @@ def cross_carving(raw_image: numpy.ndarray, times: int):
 
 
 if __name__ == '__main__':
-
-    # for x in slice_generator(load_matrix("01.jpg"), 0):
-    #     print(x)
     x = cross_carving(load_matrix("01.jpg"), 100)
     imsave("s.jpg", x)
